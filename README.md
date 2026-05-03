@@ -12,3 +12,11 @@
 
 ## 만든사람
 (학2)
+
+## 학습 진행.
+- git이란 세이브 파일임. 세이브 단계는 임시저장 단계로 항목을 분리 한 후 저장함.
+- git 아이디, 이메일 생성 git config --global user.name "  " , git config --global user.email "  "
+- global은 전체 파일에다가 적용하겠다는 뜻
+- git status : 현재 진행 상태
+- git 회원가입
+- github 첫 push 성공!
