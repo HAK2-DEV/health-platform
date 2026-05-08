@@ -38,7 +38,7 @@ function multiply(a, b) {
     return a * b
 }
 
-console.log(multiply(5,7))
+console.log(multiply(5, 7))
 
 function sayHi() {
     console.log("안뇽")
@@ -51,7 +51,7 @@ function aboutMe(name, age, hobby) {
     return name + "님은" + age + "세이고" + "취미는" + hobby + "입니다"
 
 }
-console.log (aboutMe("Hak2",30 ,"코딩"))
+console.log(aboutMe("Hak2", 30, "코딩"))
 
 
 
@@ -59,23 +59,32 @@ console.log (aboutMe("Hak2",30 ,"코딩"))
 const myButton = document.querySelector("#myButton")
 const countDisplay = document.querySelector("#counter")
 
-let count = 0 
+let count = 0
 
 // 클릭 이벤트 등록
-myButton.addEventListener("click", function() {
+myButton.addEventListener("click", function () {
     count = count + 1
-    countDisplay.textContent ="클릭횟수: " + count
-    countDisplay.style.color = "red"
-    countDisplay.style.fontSize = "30px"
+    countDisplay.textContent = "클릭횟수: " + count
+
+    // 조건문으로 변경
     if (count === 10) {
-    alert("축하해요! 10번 클릭")
-}
+        alert("🎉 10번 달성!")
+    }
+    else if (count === 20) {
+        alert("👏 20번 달성! 대단해요!")
+    }
+    else if (count >= 30 && count <= 50) {
+        countDisplay.style.color = "orange"
+    }
+
 })
 
-const resetButton =document.querySelector("#resetButton")
-resetButton.addEventListener("click", function() {
+
+const resetButton = document.querySelector("#resetButton")
+resetButton.addEventListener("click", function () {
     count = 0
     countDisplay.textContent = "클릭 횟수 : 0"
+    countDisplay.style.color = "black"
 })
 
 
