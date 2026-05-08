@@ -89,4 +89,9 @@ resetButton.addEventListener("click", function () {
 
 
 //클릭횟수
+let activites =["걷기 30분", "물 8잔", "스트레칭 10분", "수면 8시간"]
+const myList = document.querySelector("#myList")
 
+for (let i =0; i<activites.length; i++) {
+    myList.innerHTML +="<li>" + activites[i] +"</li>"
+}
