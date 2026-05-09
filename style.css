@@ -75,3 +75,42 @@
             border: 1px solid white;
             border-radius: 5px;
         }
+
+        .todo-input-area {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        
+        }
+
+        #todoInput {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+        
+        }
+
+        #addButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+
+        }
+
+        #todoList {
+            list-style: none;
+            padding: 0;
+
+        }
+
+        #todoList li {
+            padding: 10px;
+            background-color: #f5f5f5;
+            margin: 5px 0;
+            border-radius: 8px;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: rgb(255, 0, 0);
+        }

@@ -88,10 +88,63 @@ resetButton.addEventListener("click", function () {
 })
 
 
-//클릭횟수
-let activites =["걷기 30분", "물 8잔", "스트레칭 10분", "수면 8시간"]
-const myList = document.querySelector("#myList")
+let todos = []
+let completed=[]
 
-for (let i =0; i<activites.length; i++) {
-    myList.innerHTML +="<li>" + activites[i] +"</li>"
+const todoInput = document.querySelector("#todoInput")
+const addButton = document.querySelector("#addButton")
+const todoList = document.querySelector("#todoList")
+
+//다시 그리기 함수
+function renderList() {
+    todoList.innerHTML = ""
+    for (let i =0; i<todos.length; i ++) {
+        const isDone =completed[i]
+        const cssClass = isDone ? "completed" : ""
+
+        todoList.innerHTML += 
+        "<li class ='"+ cssClass+ "' onclick='toggleTodo(" + i + ")'>" + todos[i] + 
+        " <button onclick='deleteTodo(" + i + "); event.stopPropagation()'> 삭제 </button>" +
+        "</li>"
+     
+    }
 }
+
+function toggleTodo(index) {
+    completed[index] = !completed[index] // 반대로 
+    renderList()
+}
+
+function deleteTodo(index) {
+    todos.splice(index, 1) //해당 인덱스 1개 제거
+    completed.splice(index, 1)
+    renderList() // 다시 
+
+}
+
+addButton.addEventListener("click", function() {
+    const newTodo = todoInput.value
+
+    //빈 칸이면 무시
+
+    if(newTodo === ""){
+        return
+    }
+
+    todos.push(newTodo)
+    completed.push(false)
+   
+
+    todoInput.value = ""
+
+    renderList() // 함수 호출로 한 줄
+
+    
+})
+
+todoInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter"){
+        addButton.click()
+    }
+})
+

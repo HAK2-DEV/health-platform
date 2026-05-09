@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,45 +8,54 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico">
 </head>
+
 <body>
     <div class="header">
         <div class="logo">HAK2 </div>
         <a href="https://GITHUB.COM/HAK2-DEV"> GITHUB </a>
-    </div> 
+    </div>
 
     <h1> "안녕하세요. 건강증진 통합 플랫폼을 만드는 HAK 입니다."</h1>
     <h2> 프로그램 취지 및 목표 </h2>
+
+    <ol>
+        <li> 건강증진 담당자들이 건증 프로그램을 진행할 떄 다른 플랫폼을 이용한다. 네이버 밴드, 카카오톡 등. 그래서
+            더욱 원활게 소통하고 편리하게 이용할 수 있는 건강증진을 위한 전용 플랫폼을 계발하여 사람들의 건강 개선에 기여한다.
+        </li>
+
+        <li> 웹앱으로 개발 예정이며 나아가 앱 출시가 최대 목표 </li>
+    </ol>
+
+    <h3> 프로그램에서 기대할 수 있는 것</h3>
+    <ul>
+        <li> 담당자와 운영자로 구분되어 사용</li>
+        <li> 담당자의 권한: 웹앱 내애서 프로그램을 생성 및 수정 </li>
+        <li> 카카오톡이나 네이버 밴드는 점수화 하기가 힘듦. 건증 담당자 입장에서 더욱 편하게 점수를 집계하고, 나아가 참여자들도 변화를 지속 관찰할 수 있음 </li>
+    </ul>
+
+    <h2> 오늘 할일 </h2>
+
+    <div class="todo-input-area">
+        <input type="text" id="todoInput" placeholder="할 일을 입력하세요">
+        <button id="addButton"> 추가 </button>
+    </div>
     
-        <ol>    
-            <li> 건강증진 담당자들이 건증 프로그램을 진행할 떄 다른 플랫폼을 이용한다. 네이버 밴드, 카카오톡 등. 그래서
-                더욱 원활게 소통하고 편리하게 이용할 수 있는 건강증진을 위한 전용 플랫폼을 계발하여 사람들의 건강 개선에 기여한다.
-            </li>
+    <ul id="todoList"></ul>
 
-            <li> 웹앱으로 개발 예정이며 나아가 앱 출시가 최대 목표    </li>
-        </ol>
+    <a href="https://GITHUB.COM/HAK2-DEV"> 내 패이지 </a>
 
-<h3>  프로그램에서 기대할 수 있는 것</h3>
-        <ul> 
-            <li> 담당자와 운영자로 구분되어 사용</li>
-            <li> 담당자의 권한: 웹앱 내애서 프로그램을 생성 및 수정 </li>
-            <li> 카카오톡이나 네이버 밴드는 점수화 하기가 힘듦. 건증 담당자 입장에서 더욱 편하게 점수를 집계하고, 나아가 참여자들도 변화를 지속 관찰할 수 있음   </li>
-        </ul>
-        
-        <ul id="myList"></ul>
-     <a href="https://GITHUB.COM/HAK2-DEV"> 내 패이지 </a>
+    <div class="container">
+        <p id="boxA"> 박스 A</p>
+        <p id="boxB"> 박스 B</p>
+        <p id="boxC"> 박스 C</p>
 
-     <div class="container">
-        <p id = "boxA"> 박스 A</p>
-        <p id = "boxB"> 박스 B</p>
-        <p id = "boxC"> 박스 C</p>
 
-        
-     </div>
-     <button id="myButton"> 클릭해주세요!</button>
-     <button id="resetButton">리셋</button>
-     <p id ="counter"> 클릭횟수 : 0</p>
-     <script src = "script.js"></script>
+    </div>
+    <button id="myButton"> 클릭해주세요!</button>
+    <button id="resetButton">리셋</button>
+    <p id="counter"> 클릭횟수 : 0</p>
+    <script src="script.js"></script>
 </body>
 <!--  주석을 달아보아요 -->
-</html>
 
+</html>
