@@ -87,13 +87,36 @@ resetButton.addEventListener("click", function () {
     countDisplay.style.color = "black"
 })
 
-
+// todo list==
 let todos = []
 let completed=[]
 
 const todoInput = document.querySelector("#todoInput")
 const addButton = document.querySelector("#addButton")
 const todoList = document.querySelector("#todoList")
+
+// 새로 -저장 함수
+
+function saveTodos() {
+    localStorage.setItem("todos", JSON.stringify(todos))
+    localStorage.setItem("completed", JSON.stringify(completed))
+
+}
+
+// 새로 - 불러오기 함수
+
+function loadTodos() {
+    const saveTodos = localStorage.getItem("todos")
+    const savedCompleted = localStorage.getItem("completed")
+
+    if (saveTodos !== null) {
+        todos = JSON.parse(saveTodos)
+        completed = JSON.parse(savedCompleted)
+    } 
+    renderList()
+}
+
+
 
 //다시 그리기 함수
 function renderList() {
@@ -113,12 +136,14 @@ function renderList() {
 function toggleTodo(index) {
     completed[index] = !completed[index] // 반대로 
     renderList()
+    saveTodos()
 }
 
 function deleteTodo(index) {
     todos.splice(index, 1) //해당 인덱스 1개 제거
     completed.splice(index, 1)
     renderList() // 다시 
+    saveTodos()
 
 }
 
@@ -138,7 +163,7 @@ addButton.addEventListener("click", function() {
     todoInput.value = ""
 
     renderList() // 함수 호출로 한 줄
-
+    saveTodos()
     
 })
 
@@ -148,7 +173,7 @@ todoInput.addEventListener("keydown", function(event) {
     }
 })
 
-
+loadTodos()
 
 //===퀴즈 앱 ===//
 function selectAnswer(answerIndex) {
@@ -251,7 +276,28 @@ function showResult() {
     } else {
         message += " 💪 다시 도전!"
     }
-    finalScore.textContent = message
+
+    // 새로 추가 - 최고 점수 처리
+    const savedBest = localStorage.getItem("bestScore")
+
+    if (savedBest === null) {
+        //첫시도
+        localStorage.setItem("bestScore", JSON.stringify(score))
+        message += "<br><br> 첫 시도 점수: " + score + " / " + questions.length
+
+    } else {
+        const bestScore = JSON.parse(savedBest)
+
+        if (score>bestScore) {
+            localStorage.setItem("bestScore", JSON.stringify(score))
+            message += "<br><br> 🎉 신기록! 이전 최고: " + bestScore + " / " + questions.length
+
+        } else {
+            //기존 기록 유지
+            message += "<br><br>최고 점수: " + bestScore + " / " + questions.length
+        }
+    }
+    finalScore.innerHTML = message
 
 
 }
