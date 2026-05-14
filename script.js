@@ -160,8 +160,8 @@ function toggleTodo(index) {
 }
 
 function deleteTodo(index) {
-    todos.splice(index, 1) //해당 인덱스 1개 제거
-    completed.splice(index, 1)
+    todos = todos.filter((_, i) => i !== index) //해당 인덱스 1개 제거
+    completed=completed.filter((_, i) => i !== index)
     renderList() // 다시 
     saveTodos()
 
@@ -176,8 +176,8 @@ addButton.addEventListener("click", () => {
         return
     }
 
-    todos.push(newTodo)
-    completed.push(false)
+    todos = [ ...todos, newTodo]
+    completed = [...completed, false]
    
 
     todoInput.value = ""
@@ -337,3 +337,34 @@ restartButton.addEventListener("click",() => {
 showQuestion()
 
 
+    // === API 사용자 데이터 ===
+
+const loadUsersBtn = document.querySelector("#loadUsersBtn")
+const userList = document.querySelector("#userList")
+
+const loadUsers = async () => {
+    try {
+        //로딩 표시
+        userList.innerHTML ="<li> 불러오는 중...</li>"
+        loadUsersBtn.disabled = true
+
+        //API 호출
+        const response = await fetch ("https://jsonplaceholder.typicode.com/users")
+        const users = await response.json()
+
+        //화면에 표시
+        userList.innerHTML = users.map(({name, email}) => `
+         <li>  
+            <strong> ${name}</strong>
+            <span>(${email})</span>
+        </li>
+        `).join("")
+
+    } catch (error) {
+        userList.innerHTML =`<li> >❌ 에러: ${error.message}</li>`
+    } finally {
+        loadUsersBtn.disabled = false
+    }
+}
+
+loadUsersBtn.addEventListener("click", loadUsers)

@@ -313,3 +313,23 @@
     border-radius: var(--radius-md);
     text-align: center;
   }
+
+  #userList li {
+    background-color: var(--color-bg);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-sm);
+    list-style: none;
+}
+
+#userList .name {
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+
+#userList .email {
+    color: var(--color-text-light);
+    font-size: 14px;
+}
+  
