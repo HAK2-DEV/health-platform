@@ -34,23 +34,17 @@ welcome("HAK2")
 console.log(calculateAge(1990))
 console.log(introduce("HAK2", "개발자"))
 
-function multiply(a, b) {
-    return a * b
-}
+const multiply=(a, b) => a * b
 
 console.log(multiply(5, 7))
 
-function sayHi() {
-    console.log("안뇽")
-}
-
-sayHi()
+const sayHi = () => console.log("안녕")
 
 //4. 매개변수 4개
-function aboutMe(name, age, hobby) {
-    return name + "님은" + age + "세이고" + "취미는" + hobby + "입니다"
+const aboutMe= (name, age, hobby) => `
+     ${name} 님은 ${age} 세이고 취미는 ${hobby}입니다`
 
-}
+
 console.log(aboutMe("Hak2", 30, "코딩"))
 
 
@@ -62,9 +56,9 @@ const countDisplay = document.querySelector("#counter")
 let count = 0
 
 // 클릭 이벤트 등록
-myButton.addEventListener("click", function () {
+myButton.addEventListener("click", () => {
     count = count + 1
-    countDisplay.textContent = "클릭횟수: " + count
+    countDisplay.textContent = `클릭횟수: ${count}`
 
     // 조건문으로 변경
     if (count === 10) {
@@ -81,13 +75,13 @@ myButton.addEventListener("click", function () {
 
 
 const resetButton = document.querySelector("#resetButton")
-resetButton.addEventListener("click", function () {
+resetButton.addEventListener("click", () => {
     count = 0
     countDisplay.textContent = "클릭 횟수 : 0"
     countDisplay.style.color = "black"
 })
 
-// todo list==
+// =====================================todo list=========
 let todos = []
 let completed=[]
 
@@ -116,21 +110,47 @@ function loadTodos() {
     renderList()
 }
 
+//⭐ 새로 — 통계 업데이트 함수
+
+function updateStats() {
+    const statsElement =document.querySelector('#todoStats')
+    const total = todos.length
+    //빈상태
+
+    if (total === 0) {
+        statsElement.textContent ="할 일을 추가해주세요"
+        return
+    }
+
+    // 완료 개수(reduce 사용)
+    const doneCount = completed.reduce((acc, c) => c ? acc+1 : acc, 0)
+    const remaining = total - doneCount
+
+    // 모두 완료인가? (every 사용)
+    const allDone = completed.every(c => c === true)
+
+    if (allDone) {
+        statsElement.textContent =`🎉 ${total}개 모두 완료!`
+        
+    } else {
+        statsElement.textContent = `총 ${total}개 | 완료 ${doneCount}개 | 남은 ${remaining}개`
+    }
+}
 
 
 //다시 그리기 함수
 function renderList() {
-    todoList.innerHTML = ""
-    for (let i =0; i<todos.length; i ++) {
-        const isDone =completed[i]
-        const cssClass = isDone ? "completed" : ""
+    todoList.innerHTML = todos.map((todo, i) => {
+        const cssClass = completed[i] ? "completed" : ""
 
-        todoList.innerHTML += 
-        "<li class ='"+ cssClass+ "' onclick='toggleTodo(" + i + ")'>" + todos[i] + 
-        " <button onclick='deleteTodo(" + i + "); event.stopPropagation()'> 삭제 </button>" +
-        "</li>"
-     
-    }
+       return  `
+        <li class = "${cssClass}" onclick="toggleTodo(${i})">
+         ${todo} 
+        <button class="btn-danger" onclick="deleteTodo(${i}); event.stopPropagation()"> 삭제 </button>
+        </li>
+     `
+    }).join("")
+    updateStats()
 }
 
 function toggleTodo(index) {
@@ -147,7 +167,7 @@ function deleteTodo(index) {
 
 }
 
-addButton.addEventListener("click", function() {
+addButton.addEventListener("click", () => {
     const newTodo = todoInput.value
 
     //빈 칸이면 무시
@@ -167,7 +187,7 @@ addButton.addEventListener("click", function() {
     
 })
 
-todoInput.addEventListener("keydown", function(event) {
+todoInput.addEventListener("keydown", event => {
     if (event.key === "Enter"){
         addButton.click()
     }
@@ -175,7 +195,11 @@ todoInput.addEventListener("keydown", function(event) {
 
 loadTodos()
 
-//===퀴즈 앱 ===//
+
+
+
+
+//========================================퀴즈 앱 ===============//
 function selectAnswer(answerIndex) {
     const correctAnswer = questions[currentQuestionIndex].correctAnswer
 
@@ -247,7 +271,7 @@ function showQuestion() {
     const q = questions[currentQuestionIndex]
 
     // 문제 번호 표시
-    questionNumber.textContent = "문제 " + (currentQuestionIndex + 1) + " / "+ questions.length
+    questionNumber.textContent = `문제 ${currentQuestionIndex + 1} / ${questions.length}`
     //질문 표시
     questionText.textContent = q.question
     //보기 4개 그리기
@@ -264,7 +288,7 @@ function showResult() {
     resultScreen.style.display ="block"
 
     // 2. 점수 표시
-    let message = questions.length + "문제 중"+ score + "문제 정답!"
+    let message = ` ${questions.length} 문제 중 ${score} 문제 정답!`
 
 
     if (score === questions.length) {
@@ -302,7 +326,7 @@ function showResult() {
 
 }
 
-restartButton.addEventListener("click", function() {
+restartButton.addEventListener("click",() => {
     currentQuestionIndex = 0
     score = 0
     quizScreen.style.display = "block"
@@ -311,3 +335,5 @@ restartButton.addEventListener("click", function() {
 })
 // 시작
 showQuestion()
+
+

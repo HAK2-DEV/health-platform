@@ -7,6 +7,10 @@
     <title> HAK2 건강증진 프로그램 개발</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico">
+    <!-- google Fonts 추가-->
+    <link rel="preconnect" href=""https://fonts.googleapis.com">
+    <link rel="preconnect" href ="https://fonts.gstatic.com" crossorigin>
+    <link href=""https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -37,8 +41,10 @@
 
     <div class="todo-input-area">
         <input type="text" id="todoInput" placeholder="할 일을 입력하세요">
-        <button id="addButton"> 추가 </button>
+        <button id="addButton" class="btn-primary"> 추가 </button>
     </div>
+
+    <p id="todoStats" class="todo-stats"> 할 일을 추가해주세요</p>
     
     <ul id="todoList"></ul>
 
@@ -54,7 +60,7 @@
     <div id="resultScreen" style="display: none">
         <h3>퀴즈 완료!</h3>
         <p id="finalScore">결과가 여기에 표시됩니다</p>
-        <button id="restartButton">다시시작</button>
+        <button id="restartButton" class="btn-primary">다시시작</button>
     </div>
     <a href="https://GITHUB.COM/HAK2-DEV"> 내 패이지 </a>
 
@@ -65,8 +71,8 @@
 
 
     </div>
-    <button id="myButton"> 클릭해주세요!</button>
-    <button id="resetButton">리셋</button>
+    <button id="myButton" class="btn-primary"> 클릭해주세요!</button>
+    <button id="resetButton" class="btn-secondary">리셋</button>
     <p id="counter"> 클릭횟수 : 0</p>
     <script src="script.js"></script>
 </body>
